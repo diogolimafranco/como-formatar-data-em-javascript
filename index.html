@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Como formatar data em Javascript</title>
+</head>
+<body>
+  <h1 id="date">2020-03-30</h1>
+  <h1 id="dateFormatted"></h1>
+  <script>
+    const date = document.querySelector('#date');
+    const dateFormatted = document.querySelector('#dateFormatted');
+
+    function dateByString () {
+      let formatted = date.innerText;
+      return formatted.split('-').reverse().join('/');
+    }
+
+    function dateByLocale () {
+      let options = {}
+      options = { weekday: 'long', year: 'numeric', month: 'numeric', day: 'numeric' };
+      const date = new Date();
+      return date.toLocaleDateString('pt-BR', options);
+    }
+
+    function dateManualFormatted () {
+      let date = new Date();
+      day = date.getDate().toString();
+      day = day.length === 1 ? `0${day}` : day;
+      month = (date.getMonth() + 1).toString();
+      month = month.length === 1 ? `0${month}` : month;
+      year = date.getFullYear().toString();
+      return `${day}/${month}/${year}`;
+    }
+    
+    dateFormatted.innerHTML = dateManualFormatted()
+  </script>
+</body>
+</html>
